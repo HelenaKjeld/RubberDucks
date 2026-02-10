@@ -11,12 +11,12 @@ dotenvFlow.config();
 // Create Express application
 const app: Application = express();
 
-app.use("/api", routes);
-
 
 
 
 export function startServer() {
+
+    app.use("/api", routes);
 
     testConnection();
 

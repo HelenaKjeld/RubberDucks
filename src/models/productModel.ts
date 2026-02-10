@@ -19,4 +19,4 @@ const productSchema = new Schema<RubberDuck>({
 })
 
 
-export const ProductModel = model<RubberDuck>("RubberDuck", productSchema);
+export const productModel = model<RubberDuck>("RubberDuck", productSchema);
