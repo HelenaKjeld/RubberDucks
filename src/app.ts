@@ -16,6 +16,8 @@ const app: Application = express();
 
 export function startServer() {
 
+    app.use(express.json());
+
     app.use("/api", routes);
 
     testConnection();

@@ -1,9 +1,8 @@
 import { User } from "./user";
 
 export interface RubberDuck extends Document {
-    id: string;
     name: string;
-    desciption: string;
+    description: string;
     imageUrl: string;
     color: string;
     theme: string;

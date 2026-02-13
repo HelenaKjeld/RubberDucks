@@ -22,8 +22,10 @@ export async function createProduct(req: Request, res: Response): Promise<void> 
         res.status(201).json(result);
 
     }
-    catch {
-        res.status(500).json({ message: "An error occurred while creating the product." });
+    catch (err) {
+                console.error("Error creating product:", err); // Add this line
+
+        res.status(500).json("An error occurred while creating the product." + err );
     }
     finally {
         await disconnect();
