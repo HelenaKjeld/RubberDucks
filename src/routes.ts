@@ -4,7 +4,9 @@ import {
     getAllProduct, 
     getProductById,
     updateProductById, 
-    deleteProductById } from "./controllers/productController";
+    deleteProductById,
+    getDucksByQuery, 
+    getDucksByQueryGeneric} from "./controllers/productController";
 
 const router: Router = Router();
 
@@ -18,8 +20,11 @@ router.get( "/", (req: Request, res: Response) => {
 
 router.post('/products', createProduct);
 router.get('/products', getAllProduct);
+router.post('/products/query', getDucksByQueryGeneric);
 router.get('/products/:id', getProductById);
 router.put('/products/:id', updateProductById);
 router.delete('/products/:id', deleteProductById);
+router.get('/products/:key/:value', getDucksByQuery);
+
 
 export default router;

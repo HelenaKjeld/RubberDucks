@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { productModel } from '../models/productModel';
 import { connect, disconnect } from '../repository/database';
+import { buildDynamicQuery } from './dynamicueryBuilder';
 
 // CRUD YEAH
 
@@ -141,6 +142,68 @@ export async function deleteProductById(req: Request, res: Response): Promise<vo
     catch (err) {
 
         res.status(500).json("error deleting the DUCK product by id." + err );
+    }
+    finally {
+        await disconnect();
+    }
+}
+
+
+/** 
+* Retrieves a DUCK by query from the database
+* @param req
+* @param res
+*/
+export async function getDucksByQuery(req: Request, res: Response): Promise<void> {
+
+    try {
+        await connect();
+
+        // api/products/key/value
+
+
+
+        const key: any = req.params.key;
+        const value: any = req.params.value;
+        
+
+        const result = await productModel.find({ [key]: {$regex: value, $options: 'i'} } ); 
+
+        res.status(200).json(result);
+
+    }
+    catch (err) {
+
+        res.status(500).json("error retrieving product by id." + err );
+    }
+    finally {
+        await disconnect();
+    }
+}
+
+/** 
+* Retrieves a DUCK by query from the database
+* @param req
+* @param res
+*/
+export async function getDucksByQueryGeneric(req: Request, res: Response): Promise<void> {
+
+    try {
+        await connect();
+
+        // api/products/query
+
+       const body = req.body; 
+        
+
+        const result = await productModel.find(buildDynamicQuery(productModel, body)); 
+
+        res.status(200).json(result);
+
+    }
+    catch (err) {
+
+        res.status(500).json("error retrieving product by id." + err );
     }
     finally {
         await disconnect();
