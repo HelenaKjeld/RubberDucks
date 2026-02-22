@@ -7,7 +7,7 @@ import {
     deleteProductById,
     getDucksByQuery, 
     getDucksByQueryGeneric} from "./controllers/productController";
-import { registerUser } from "./controllers/authController";
+import { loginUser, registerUser, verifyToken } from "./controllers/authController";
 
 const router: Router = Router();
 
@@ -20,15 +20,20 @@ router.get( "/", (req: Request, res: Response) => {
 
 // auth routes
 router.post('/user/register', registerUser);
+router.post('/user/login', loginUser);
+
+
 
 
 router.post('/products', createProduct);
 router.get('/products', getAllProduct);
 router.post('/products/query', getDucksByQueryGeneric);
+
+
 router.get('/products/:id', getProductById);
 router.put('/products/:id', updateProductById);
-router.delete('/products/:id', deleteProductById);
-router.get('/products/:key/:value', getDucksByQuery);
+router.delete('/products/:id', verifyToken, deleteProductById);
+router.get('/products/:key/:value', verifyToken, getDucksByQuery);
 
 
 export default router;
