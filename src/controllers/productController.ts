@@ -10,7 +10,7 @@ import { buildDynamicQuery } from './dynamicueryBuilder';
 * @param req
 * @param res
 */
-export async function createProduct(req: Request, res: Response): Promise<void> {
+export async function createDucks(req: Request, res: Response): Promise<void> {
 
     const data = req.body;
 
@@ -40,7 +40,7 @@ export async function createProduct(req: Request, res: Response): Promise<void> 
 * @param req
 * @param res
 */
-export async function getAllProduct(req: Request, res: Response): Promise<void> {
+export async function getAllDucks(req: Request, res: Response): Promise<void> {
 
     try {
         await connect();
@@ -65,7 +65,7 @@ export async function getAllProduct(req: Request, res: Response): Promise<void> 
 * @param req
 * @param res
 */
-export async function getProductById(req: Request, res: Response): Promise<void> {
+export async function getDuckById(req: Request, res: Response): Promise<void> {
 
     try {
         await connect();
@@ -91,7 +91,7 @@ export async function getProductById(req: Request, res: Response): Promise<void>
 * @param req
 * @param res
 */
-export async function updateProductById(req: Request, res: Response): Promise<void> {
+export async function updateDuckById(req: Request, res: Response): Promise<void> {
 
     const id = req.params.id;
 
@@ -122,7 +122,7 @@ export async function updateProductById(req: Request, res: Response): Promise<vo
 * @param req
 * @param res
 */
-export async function deleteProductById(req: Request, res: Response): Promise<void> {
+export async function deleteDuckById(req: Request, res: Response): Promise<void> {
 
     const id = req.params.id;
 

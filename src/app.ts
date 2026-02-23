@@ -4,6 +4,7 @@ import{ testConnection } from './repository/database';
 
 import routes from './routes';
 import { disconnect } from 'node:cluster';
+import cors from 'cors';
 
 
 dotenvFlow.config();
@@ -15,6 +16,22 @@ const app: Application = express();
 
 
 export function startServer() {
+
+    app.use(cors({
+
+  // Allow request from any origin
+  origin: "*", // localhost and render is allowed at the same time
+
+  // allow HTTP methods
+  methods: ["GET", "PUT", "POST", "DELETE"],
+
+  // allow headers
+  allowedHeaders: ['auth-token', 'Origin', 'X-Requested-Width', 'Content-Type', 'Accept'],
+
+  // allow credentials
+  credentials:true
+}))
+    
 
     app.use(express.json());
 

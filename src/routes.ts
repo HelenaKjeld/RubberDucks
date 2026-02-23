@@ -1,10 +1,10 @@
 import { Router, Request, Response } from "express";
 import { 
-    createProduct, 
-    getAllProduct, 
-    getProductById,
-    updateProductById, 
-    deleteProductById,
+    createDucks, 
+    getAllDucks, 
+    getDuckById,
+    updateDuckById, 
+    deleteDuckById,
     getDucksByQuery, 
     getDucksByQueryGeneric} from "./controllers/productController";
 import { loginUser, registerUser, verifyToken } from "./controllers/authController";
@@ -25,14 +25,14 @@ router.post('/user/login', loginUser);
 
 
 
-router.post('/products', createProduct);
-router.get('/products', getAllProduct);
+router.post('/products', createDucks);
+router.get('/products', getAllDucks);
 router.post('/products/query', getDucksByQueryGeneric);
 
 
-router.get('/products/:id', getProductById);
-router.put('/products/:id', updateProductById);
-router.delete('/products/:id', verifyToken, deleteProductById);
+router.get('/products/:id', getDuckById);
+router.put('/products/:id', updateDuckById);
+router.delete('/products/:id', verifyToken, deleteDuckById);
 router.get('/products/:key/:value', verifyToken, getDucksByQuery);
 
 
