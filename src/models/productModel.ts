@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 import { RubberDuck } from "../interfaces/rubberducks";
 
-const productSchema = new Schema<RubberDuck>({
+const duckSchema = new Schema<RubberDuck>({
     name: { type: String, required: true, min: 3, max: 255 },
     description: { type: String, required: true, min: 3, max: 1024 },
     imageUrl: { type: String, required: true, min: 3, max: 1024 },
@@ -26,7 +26,7 @@ type UpdateQuery<T> = {
     $inc?: { __v?: number };
 };
 
-productSchema.pre('findOneAndUpdate', function <T extends Document>(this: any) {
+duckSchema.pre('findOneAndUpdate', function <T extends Document>(this: any) {
     const update = this.getUpdate() as UpdateQuery<T>;
     if (update.__v != null) {
         delete update.__v;
@@ -45,4 +45,4 @@ productSchema.pre('findOneAndUpdate', function <T extends Document>(this: any) {
 });
 
 
-export const productModel = model<RubberDuck>("RubberDuck", productSchema);
+export const productModel = model<RubberDuck>("RubberDuck", duckSchema);

@@ -24,16 +24,20 @@ router.post('/user/login', loginUser);
 
 
 
+// create
+router.post('/products', verifyToken, createDucks);
 
-router.post('/products', createDucks);
+// gets
 router.get('/products', getAllDucks);
-router.post('/products/query', getDucksByQueryGeneric);
-
-
 router.get('/products/:id', getDuckById);
-router.put('/products/:id', updateDuckById);
-router.delete('/products/:id', verifyToken, deleteDuckById);
+router.post('/products/query', getDucksByQueryGeneric);
 router.get('/products/:key/:value', verifyToken, getDucksByQuery);
+
+// update + delete 
+
+router.put('/products/:id', verifyToken, updateDuckById);
+router.delete('/products/:id', verifyToken, deleteDuckById);
+
 
 
 export default router;

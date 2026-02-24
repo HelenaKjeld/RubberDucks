@@ -4,6 +4,7 @@ import{ testConnection } from './repository/database';
 
 import routes from './routes';
 import { disconnect } from 'node:cluster';
+import { setupDocs } from '../util/documentation';
 import cors from 'cors';
 
 
@@ -13,38 +14,41 @@ dotenvFlow.config();
 const app: Application = express();
 
 
+/**
+ * Sets up CORS handling.
+ */
+function setupCors() {
+    app.use(cors({
+
+        origin: "*",
+
+        methods: 'GET, PUT, POST, DELETE',
+
+        allowedHeaders: ['auth-token', 'Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
+
+        credentials:true
+
+    }))
+};
+
+
 
 
 export function startServer() {
 
-    app.use(cors({
-
-  // Allow request from any origin
-  origin: "*", // localhost and render is allowed at the same time
-
-  // allow HTTP methods
-  methods: ["GET", "PUT", "POST", "DELETE"],
-
-  // allow headers
-  allowedHeaders: ['auth-token', 'Origin', 'X-Requested-Width', 'Content-Type', 'Accept'],
-
-  // allow credentials
-  credentials:true
-}))
+    setupCors();
     
 
     app.use(express.json());
 
     app.use("/api", routes);
 
-    testConnection();
+    setupDocs (app);
 
-    //connect();
-    //disconnect();
-    //test db connection
+    testConnection();
 
     const PORT: number = parseInt (process.env.PORT as string) || 4000;
     app.listen(PORT, function() {
-        console.log("Server is running o port:" + PORT);
+        console.log("Server is running on port:" + PORT);
     })
 }
