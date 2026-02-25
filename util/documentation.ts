@@ -31,7 +31,7 @@ export function setupDocs(app: Application) {
                 },
             },
             schemas: {
-                Ducks: {
+                RubberDuck: {
                     type: 'object',
                     properties: {
                         name: { type: 'string' },
@@ -56,7 +56,7 @@ export function setupDocs(app: Application) {
                         password: { type: 'string' },
                         registerDate: { type: 'string' },
                     },
-                },
+                }
             },
         }
     }
