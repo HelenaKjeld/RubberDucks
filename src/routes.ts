@@ -238,7 +238,7 @@ router.post("/products/query", getDucksByQueryGeneric);
 /**
  * @swagger
  * /products/{key}/{value}:
- *   get:
+ *   post:
  *     tags:
  *       - Product Routes
  *     summary: Query DUCKs by key/value pair
@@ -272,7 +272,7 @@ router.post("/products/query", getDucksByQueryGeneric);
  *       500:
  *         description: Server error
  */
-router.get("/products/:key/:value", verifyToken, getDucksByQuery);
+router.post("/products/:key/:value", getDucksByQuery);
 
 // update
 /**
